@@ -1,5 +1,5 @@
 import openpyxl
-from .database import retrieve_fromDb
+from database import retrieve_fromDb
 
 def createExcel() -> None:
     data = retrieve_fromDb()

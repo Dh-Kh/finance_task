@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
 from redis import Redis
 from rq_scheduler import Scheduler
-from .scraping import get_price
-from .database import save_toDb
+from scraping import get_price
+from database import save_toDb
 
-redis = Redis(host="localhost", port=6379)
+#???
+redis = Redis(host="redis", port=6379)
 
 scheduler = Scheduler(connection=redis)
 
@@ -15,6 +16,5 @@ def container() -> None:
 scheduler.schedule(
     scheduled_time=datetime.utcnow(),
     func=container,
-    interval=timedelta(hours=1)
+    interval=int(timedelta(hours=1).total_seconds())
 )
-scheduler.run()

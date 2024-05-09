@@ -7,7 +7,7 @@ def save_toDb(price_value: str) -> None:
         dbname='postgres', 
         user='postgres', 
         password='12345',
-        host='localhost'
+        host='pgdb'
     )
     cursor = connection.cursor()
     cursor.execute(
@@ -32,7 +32,7 @@ def retrieve_fromDb() -> List[str]:
         dbname='postgres', 
         user='postgres', 
         password='12345',
-        host='localhost'
+        host='pgdb'
     )
     cursor = connection.cursor()
     cursor.execute(

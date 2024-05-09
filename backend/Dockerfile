@@ -10,6 +10,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /backend
 
-CMD ["sh", "-c", "python tgbot.py & python scheduler.py"]
 
 
