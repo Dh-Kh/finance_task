@@ -17,3 +17,4 @@ scheduler.schedule(
     func=container,
     interval=timedelta(hours=1)
 )
+scheduler.run()
