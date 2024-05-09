@@ -4,7 +4,9 @@ from rq_scheduler import Scheduler
 from scraping import get_price
 from database import save_toDb
 
-#???
+#rqscheduler -i 5 & 
+#maybe need to use Celery
+
 redis = Redis(host="redis", port=6379)
 
 scheduler = Scheduler(connection=redis)

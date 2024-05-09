@@ -10,7 +10,9 @@ services:
       - chromedriver
       - pgdb
       - redis
-    command: sh -c "rqscheduler -i 5 & python tgbot.py"
+    command: sh -c "python tgbot.py"
+    networks:
+      - appnetwork
 
   chromedriver:
     image: selenium/standalone-chrome
@@ -19,6 +21,8 @@ services:
     shm_size: '512M'  
     tmpfs:
       - /dev/shm
+    networks:
+      - appnetwork
 
   pgdb:
     image: postgres
@@ -29,13 +33,20 @@ services:
       - POSTGRES_PASSWORD=12345
     volumes:
       - pgdata:/var/lib/postgresql/data/
+    networks:
+      - appnetwork
       
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - '6379:6379'
-    command: redis-server --bind 0.0.0.0
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
+    driver: bridge
 
 volumes:
   pgdata:

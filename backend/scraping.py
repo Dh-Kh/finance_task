@@ -8,16 +8,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.service import Service
 
+#потом отключить службу постгрес
 def get_price(url: str) -> Union[str, None]:
     options = Options()
     options.add_argument('--headless=new')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    chrome_prefs = {}
-    options.experimental_options["prefs"] = chrome_prefs
-    options["profile.default_content_settings"] = {"images": 2}
-    driver = webdriver.Chrome(
+    options.add_argument('--disable-blink-features=AutomationControlled')
+    #maybe no need to use webdriver.Remote make researches about it
+    driver = webdriver.Remote(
         #service=Service(ChromeDriverManager().install()), 
+        command_executor="http://127.0.0.1:4444/ui",
         options=options
     )
     driver.get(url)
@@ -32,6 +33,7 @@ def get_price(url: str) -> Union[str, None]:
     except TimeoutException:
         return None
     driver.close()
+    driver.quit()
 
 
 
