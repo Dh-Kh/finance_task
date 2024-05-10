@@ -7,7 +7,7 @@ app = Celery('tasks', broker='redis://redis:6379/')
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(crontab(minute='*/5'), scheduler_task.s(), name="every hour")
+    sender.add_periodic_task(crontab(minute=0, hour="*"), scheduler_task.s(), name="every hour")
 
 @app.task
 def scheduler_task():

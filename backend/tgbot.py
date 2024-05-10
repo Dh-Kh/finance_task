@@ -2,6 +2,7 @@ import asyncio
 import nest_asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
+from aiogram.types import FSInputFile
 from excel import createExcel
 
 nest_asyncio.apply()
@@ -19,8 +20,7 @@ async def createExcelAsync():
 @dp.message(Command("get_exchange_rate"))
 async def cmd_get_exchange_rate(message: types.Message):
     file = await createExcelAsync()
-    with open(file, "rb") as document_file:
-        await bot.send_document(chat_id=message.chat.id, document=document_file)
+    await message.answer_document(document=FSInputFile(file), caption="Data")
     
 async def main():
     await dp.start_polling(bot)
