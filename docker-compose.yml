@@ -10,7 +10,7 @@ services:
       - chromedriver
       - pgdb
       - redis
-    command: sh -c "python tgbot.py"
+    command: sh -c "celery -A scheduler worker -l info --beat & python tgbot.py"
     networks:
       - appnetwork
 
@@ -21,6 +21,8 @@ services:
     shm_size: '512M'  
     tmpfs:
       - /dev/shm
+    environment:
+      - SE_NODE_SESSION_TIMEOUT=1000
     networks:
       - appnetwork
 

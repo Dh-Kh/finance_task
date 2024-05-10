@@ -2,7 +2,7 @@ from typing import List
 import psycopg2
 
 def save_toDb(price_value: str) -> None:
-
+    
     connection = psycopg2.connect(
         dbname='postgres', 
         user='postgres', 
@@ -11,7 +11,7 @@ def save_toDb(price_value: str) -> None:
     )
     cursor = connection.cursor()
     cursor.execute(
-        """"
+        """
         CREATE TABLE IF NOT EXISTS storageTG (
             id SERIAL PRIMARY KEY,
             exchange_rate VARCHAR(255),
@@ -27,7 +27,7 @@ def save_toDb(price_value: str) -> None:
     connection.close()
     
 def retrieve_fromDb() -> List[str]:
-    
+        
     connection = psycopg2.connect(
         dbname='postgres', 
         user='postgres', 
