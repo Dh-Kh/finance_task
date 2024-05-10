@@ -4,10 +4,11 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram.types import FSInputFile
 from excel import createExcel
+from settings import BOT_TOKEN
 
 nest_asyncio.apply()
 
-bot = Bot(token="7016824800:AAHc4-a24DhpkXnq8TYnK_Qcxg8Y8VdQjqM")
+bot = Bot(token=BOT_TOKEN)
 
 dp = Dispatcher()
 

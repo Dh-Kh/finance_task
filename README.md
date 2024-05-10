@@ -8,7 +8,7 @@
 2. **Use the Command**: Once the bot is started, open a chat with it and type the following command:
 
     ```
-    /get_exchange_rate
+    /get_exchange_rate 
     ```
 
 To start the `@TestPythonGetbot` Telegram bot using Docker Compose, follow these steps:

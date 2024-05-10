@@ -1,13 +1,15 @@
 from typing import List
+from settings import (DB_NAME, DB_USER, 
+                      DB_PASSWORD, DB_HOST)
 import psycopg2
 
 def save_toDb(price_value: str) -> None:
     
     connection = psycopg2.connect(
-        dbname='postgres', 
-        user='postgres', 
-        password='12345',
-        host='pgdb'
+        dbname=DB_NAME, 
+        user=DB_USER, 
+        password=DB_PASSWORD,
+        host=DB_HOST
     )
     cursor = connection.cursor()
     cursor.execute(
@@ -29,10 +31,10 @@ def save_toDb(price_value: str) -> None:
 def retrieve_fromDb() -> List[str]:
         
     connection = psycopg2.connect(
-        dbname='postgres', 
-        user='postgres', 
-        password='12345',
-        host='pgdb'
+        dbname=DB_NAME, 
+        user=DB_USER, 
+        password=DB_PASSWORD,
+        host=DB_HOST
     )
     cursor = connection.cursor()
     cursor.execute(

@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.service import Service
+from settings import SELENIUM_URL
 
 
 def get_price(url: str) -> Union[str, None]:
@@ -15,7 +16,7 @@ def get_price(url: str) -> Union[str, None]:
     options.add_argument("--no-sandbox")
     driver = webdriver.Remote(
         #service=Service(ChromeDriverManager().install()), 
-        command_executor="http://chromedriver:4444",
+        command_executor=SELENIUM_URL,
         options=options
     )
     driver.get(url)
